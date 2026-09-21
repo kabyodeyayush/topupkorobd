@@ -3,562 +3,385 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>TopUpKoroBD - eFootball Coin Top Up</title>
+<title>TopUpKoroBD | eFootball Coin Top Up</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    font-family:Arial,sans-serif;
-    background:#020914;
-    color:#fff;
+  background:#050914;
+  color:#fff;
+  min-height:100vh;
 }
 
-button,input{
-    font-family:inherit;
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 10%,#005eff33,transparent 30%),
+    radial-gradient(circle at 80% 80%,#00d9ff22,transparent 30%);
+  pointer-events:none;
+  z-index:-1;
 }
 
-button{
-    cursor:pointer;
-}
-
-/* HEADER */
 header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:rgba(2,9,20,.96);
-    border-bottom:1px solid #164579;
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:#07101ddd;
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid #ffffff12;
 }
 
 .nav{
-    max-width:1150px;
-    margin:auto;
-    padding:15px 20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+  max-width:1200px;
+  margin:auto;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .logo{
-    font-size:23px;
-    font-weight:900;
+  font-size:24px;
+  font-weight:900;
+  color:#fff;
 }
 
 .logo span{
-    color:#ffd500;
+  color:#00b7ff;
 }
 
-.nav-links{
-    display:flex;
-    gap:22px;
+nav a{
+  color:#aaa;
+  text-decoration:none;
+  margin-left:22px;
+  font-size:14px;
 }
 
-.nav-links button{
-    background:none;
-    border:0;
-    color:#d8e7ff;
-    font-size:14px;
-}
-
-.nav-links button:hover{
-    color:#ffd500;
+nav a:hover{
+  color:#00b7ff;
 }
 
 .online{
-    background:#063d2b;
-    color:#42ff9b;
-    padding:7px 12px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:bold;
+  color:#00ff9d;
+  font-size:12px;
+  margin-left:20px;
 }
 
-/* PAGES */
-.page{
-    display:none;
-    max-width:1150px;
-    margin:auto;
-    padding:25px 15px 50px;
-}
-
-.page.active{
-    display:block;
-}
-
-/* HOME */
 .hero{
-    min-height:510px;
-    border-radius:25px;
-    padding:55px 45px;
-    display:flex;
-    align-items:center;
-    background:
-    radial-gradient(circle at 80% 40%,#164da0 0%,transparent 35%),
-    linear-gradient(135deg,#03132c,#041a38 55%,#061027);
-    border:1px solid #164f91;
-    position:relative;
-    overflow:hidden;
-}
-
-.hero-content{
-    max-width:620px;
-    position:relative;
-    z-index:2;
-}
-
-.hero-small{
-    color:#35b9ff;
-    font-weight:bold;
-    margin-bottom:12px;
-}
-
-.hero h1{
-    font-size:55px;
-    line-height:1;
-    margin-bottom:18px;
-}
-
-.hero h1 span{
-    color:#ffd500;
-}
-
-.hero p{
-    color:#b9c9df;
-    font-size:17px;
-    line-height:1.7;
-    margin-bottom:25px;
-}
-
-.hero-btn{
-    border:0;
-    background:linear-gradient(135deg,#ffe600,#ffb800);
-    color:#111;
-    padding:15px 28px;
-    border-radius:12px;
-    font-size:17px;
-    font-weight:900;
-}
-
-.hero-coins{
-    position:absolute;
-    right:70px;
-    bottom:45px;
-    font-size:130px;
-}
-
-.features{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-top:20px;
-}
-
-.feature{
-    background:#07182d;
-    border:1px solid #15395f;
-    border-radius:16px;
-    padding:22px 15px;
-    text-align:center;
-}
-
-.feature-icon{
-    font-size:30px;
-    margin-bottom:10px;
-}
-
-.feature strong{
-    display:block;
-    margin-bottom:6px;
-}
-
-.feature small{
-    color:#8fa8c5;
-}
-
-/* TITLES */
-.page-title{
-    font-size:35px;
-    margin-bottom:8px;
-}
-
-.page-subtitle{
-    color:#8fa8c5;
-    margin-bottom:25px;
-}
-
-/* PACKAGES */
-.package-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-}
-
-.package{
-    position:relative;
-    background:linear-gradient(145deg,#092044,#06152a);
-    border:1px solid #1b528d;
-    border-radius:18px;
-    padding:20px 15px;
-    text-align:center;
-    transition:.25s;
-}
-
-.package:hover{
-    transform:translateY(-5px);
-    border-color:#ffd500;
-    box-shadow:0 12px 30px rgba(0,100,255,.25);
-}
-
-.coin-icon{
-    font-size:45px;
-    margin-bottom:8px;
-}
-
-.package-name{
-    min-height:45px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:15px;
-    font-weight:bold;
-}
-
-.package-price{
-    color:#ffd500;
-    font-size:21px;
-    font-weight:900;
-    margin:10px 0 14px;
-}
-
-.order-now{
-    width:100%;
-    padding:11px;
-    border:0;
-    border-radius:10px;
-    background:#ffd500;
-    color:#111;
-    font-weight:900;
+  max-width:1200px;
+  margin:auto;
+  padding:90px 20px 60px;
+  text-align:center;
 }
 
 .badge{
-    position:absolute;
-    top:9px;
-    right:9px;
-    background:#ff3b30;
-    color:white;
-    padding:4px 7px;
-    border-radius:8px;
-    font-size:9px;
-    font-weight:bold;
+  display:inline-block;
+  padding:8px 15px;
+  border:1px solid #00b7ff55;
+  background:#00b7ff12;
+  color:#55d4ff;
+  border-radius:30px;
+  font-size:13px;
+  margin-bottom:20px;
 }
 
-/* ORDER */
+.hero h1{
+  font-size:clamp(40px,7vw,75px);
+  line-height:1;
+  font-weight:900;
+  margin-bottom:22px;
+}
+
+.hero h1 span{
+  color:#00b7ff;
+}
+
+.hero p{
+  color:#9ca8bb;
+  max-width:650px;
+  margin:auto;
+  line-height:1.7;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:30px;
+  padding:15px 28px;
+  background:linear-gradient(135deg,#008cff,#00c6ff);
+  color:#fff;
+  text-decoration:none;
+  border-radius:12px;
+  font-weight:bold;
+  box-shadow:0 10px 35px #008cff33;
+  border:0;
+  cursor:pointer;
+}
+
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:55px 20px;
+}
+
+.title{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.title h2{
+  font-size:34px;
+}
+
+.title p{
+  color:#8290a5;
+  margin-top:10px;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.feature{
+  padding:25px;
+  border:1px solid #ffffff10;
+  background:#ffffff06;
+  border-radius:18px;
+  text-align:center;
+}
+
+.feature .icon{
+  font-size:30px;
+  margin-bottom:12px;
+}
+
+.feature p{
+  color:#8995a8;
+  font-size:13px;
+  margin-top:8px;
+}
+
+.packages{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.card{
+  position:relative;
+  background:linear-gradient(145deg,#101a2d,#080e1b);
+  border:1px solid #ffffff10;
+  border-radius:20px;
+  padding:25px;
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:#00b7ff66;
+  box-shadow:0 15px 50px #008cff18;
+}
+
+.card .coin{
+  font-size:28px;
+  font-weight:900;
+}
+
+.card .coin span{
+  color:#00b7ff;
+}
+
+.price{
+  font-size:25px;
+  font-weight:bold;
+  margin:18px 0;
+}
+
+.price small{
+  color:#8995a8;
+  font-size:13px;
+}
+
+.card button{
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:10px;
+  background:#00aaff;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.hot{
+  position:absolute;
+  right:15px;
+  top:15px;
+  background:#ff3d71;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:10px;
+}
+
 .order-box{
-    max-width:650px;
-    margin:auto;
-    background:linear-gradient(145deg,#071c35,#051225);
-    border:1px solid #17477b;
-    border-radius:20px;
-    padding:25px;
+  max-width:650px;
+  margin:auto;
+  padding:30px;
+  border:1px solid #ffffff10;
+  background:#ffffff06;
+  border-radius:22px;
 }
 
-.selected-package{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    padding:15px;
-    border-radius:14px;
-    background:#0a2443;
-    border:1px solid #23619c;
-    margin-bottom:22px;
+input,select{
+  width:100%;
+  padding:14px;
+  margin-top:8px;
+  margin-bottom:17px;
+  background:#080f1c;
+  color:#fff;
+  border:1px solid #ffffff15;
+  border-radius:10px;
+  outline:none;
 }
 
-.selected-icon{
-    font-size:42px;
-}
-
-.selected-info{
-    flex:1;
-}
-
-.selected-info small{
-    color:#91a9c4;
-}
-
-.selected-info strong{
-    display:block;
-    margin-top:4px;
-}
-
-.selected-price{
-    color:#ffd500;
-    font-weight:900;
-    font-size:19px;
+input:focus,select:focus{
+  border-color:#00aaff;
 }
 
 label{
-    display:block;
-    color:#b9cbe1;
-    font-size:14px;
-    font-weight:bold;
-    margin:15px 0 7px;
+  color:#aab5c5;
+  font-size:13px;
 }
 
-input{
-    width:100%;
-    padding:14px;
-    background:#031022;
-    border:1px solid #23486d;
-    color:white;
-    border-radius:10px;
-    outline:none;
-    font-size:15px;
+.payment{
+  background:#00b7ff0c;
+  border:1px solid #00b7ff30;
+  padding:18px;
+  border-radius:13px;
+  margin-bottom:18px;
 }
 
-input:focus{
-    border-color:#3c9cff;
+.payment strong{
+  color:#00c6ff;
 }
 
-.help-text{
-    color:#718ba8;
-    font-size:12px;
-    margin-top:6px;
+.submit{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,#008cff,#00c6ff);
+  color:#fff;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-/* PAYMENT */
-.payment-box{
-    margin-top:20px;
-    padding:18px;
-    background:#071a2e;
-    border:1px solid #24547f;
-    border-radius:14px;
+.success{
+  display:none;
+  text-align:center;
+  padding:30px;
+  background:#00ff9d08;
+  border:1px solid #00ff9d33;
+  border-radius:18px;
 }
 
-.payment-title{
-    color:#ffd500;
-    font-weight:900;
-    margin-bottom:12px;
-    font-size:17px;
+.success h3{
+  color:#00ff9d;
+  margin-bottom:15px;
 }
 
-.bkash-number{
-    font-size:22px;
-    font-weight:900;
-    color:#ff4f8b;
-    margin:8px 0;
+.success p{
+  color:#aeb9c9;
+  line-height:1.8;
 }
 
-.payment-note{
-    color:#9bb0c8;
-    font-size:12px;
-    line-height:1.6;
-}
-
-/* BUTTON */
-.confirm-btn{
-    width:100%;
-    margin-top:22px;
-    padding:16px;
-    border:0;
-    border-radius:12px;
-    background:linear-gradient(135deg,#00e676,#00a844);
-    color:white;
-    font-size:17px;
-    font-weight:900;
-}
-
-/* SUCCESS */
-.success-box{
-    max-width:650px;
-    margin:30px auto;
-    text-align:center;
-    background:#071c2c;
-    border:1px solid #126a45;
-    border-radius:22px;
-    padding:40px 25px;
-}
-
-.success-icon{
-    width:80px;
-    height:80px;
-    margin:auto auto 18px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-radius:50%;
-    background:#00b85a;
-    font-size:42px;
-}
-
-.success-box p{
-    color:#9bb1c8;
-    line-height:1.6;
-}
-
-.order-info{
-    text-align:left;
-    margin:22px 0;
-    background:#041225;
-    border-radius:12px;
-    padding:16px;
-}
-
-.info-row{
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    padding:9px 0;
-    border-bottom:1px solid #142c48;
-}
-
-.info-row:last-child{
-    border:0;
-}
-
-.info-row span:first-child{
-    color:#8ba2bb;
-}
-
-.info-row span:last-child{
-    text-align:right;
-    font-weight:bold;
-}
-
-.whatsapp-btn{
-    display:block;
-    width:100%;
-    padding:15px;
-    background:#25d366;
-    color:white;
-    border-radius:11px;
-    text-decoration:none;
-    font-weight:900;
-}
-
-/* FAQ */
 .faq{
-    max-width:750px;
-    margin:auto;
+  max-width:800px;
+  margin:auto;
 }
 
-.faq-item{
-    background:#071a30;
-    border:1px solid #183e64;
-    border-radius:12px;
-    padding:18px;
-    margin-bottom:10px;
+details{
+  background:#ffffff06;
+  border:1px solid #ffffff10;
+  border-radius:13px;
+  margin-bottom:12px;
+  padding:17px;
 }
 
-.faq-item h3{
-    margin-bottom:8px;
+summary{
+  cursor:pointer;
+  font-weight:bold;
 }
 
-.faq-item p{
-    color:#91a7c0;
-    line-height:1.6;
+details p{
+  color:#8d99ab;
+  margin-top:12px;
+  line-height:1.6;
 }
 
-/* FOOTER */
 footer{
-    border-top:1px solid #112d4d;
-    background:#020914;
-    text-align:center;
-    padding:25px 15px;
-    color:#607893;
-    font-size:13px;
+  text-align:center;
+  border-top:1px solid #ffffff0d;
+  padding:30px 20px;
+  color:#667286;
+  font-size:13px;
 }
 
-.footer-logo{
-    color:white;
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:8px;
+.whatsapp{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:#25d366;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-decoration:none;
+  font-size:27px;
+  box-shadow:0 10px 30px #25d36644;
+  z-index:200;
 }
 
-.footer-logo span{
-    color:#ffd500;
-}
-
-/* MOBILE */
 @media(max-width:900px){
+  .packages{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-    .package-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .features{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .hero-coins{
-        right:20px;
-        opacity:.3;
-    }
+  .features{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
-@media(max-width:650px){
+@media(max-width:600px){
+  nav{
+    display:none;
+  }
 
-    .nav-links{
-        display:none;
-    }
+  .hero{
+    padding-top:65px;
+  }
 
-    .nav{
-        padding:13px 12px;
-    }
+  .packages,
+  .features{
+    grid-template-columns:1fr;
+  }
 
-    .hero{
-        min-height:520px;
-        padding:35px 22px;
-    }
-
-    .hero h1{
-        font-size:38px;
-    }
-
-    .hero p{
-        font-size:15px;
-    }
-
-    .hero-coins{
-        right:10px;
-        bottom:30px;
-        font-size:85px;
-    }
-
-    .package-grid{
-        grid-template-columns:1fr 1fr;
-        gap:10px;
-    }
-
-    .package{
-        padding:15px 9px;
-    }
-
-    .coin-icon{
-        font-size:34px;
-    }
-
-    .package-name{
-        font-size:13px;
-    }
-
-    .package-price{
-        font-size:17px;
-    }
-
-    .order-box{
-        padding:18px;
-    }
+  .order-box{
+    padding:20px;
+  }
 }
 </style>
 </head>
@@ -566,704 +389,710 @@ footer{
 <body>
 
 <header>
-<div class="nav">
+  <div class="nav">
 
     <div class="logo">
-        🎮 TopUpKoro<span>BD</span>
+      TopUp<span>KoroBD</span>
     </div>
 
-    <div class="nav-links">
-        <button onclick="showPage('home')">Home</button>
-        <button onclick="showPage('packages')">Packages</button>
-        <button onclick="showPage('order')">How to Order</button>
-        <button onclick="showPage('faq')">FAQ</button>
+    <div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#packages">Packages</a>
+        <a href="#order">Order</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <span class="online">● ONLINE</span>
     </div>
 
-    <div class="online">● ONLINE</div>
-
-</div>
+  </div>
 </header>
 
 
-<!-- HOME -->
+<section class="hero" id="home">
 
-<section id="home" class="page active">
+  <div class="badge">⚡ FAST • SAFE • PREMIUM</div>
 
-<div class="hero">
+  <h1>
+    eFootball™ <span>Coin Top Up</span>
+  </h1>
 
-    <div class="hero-content">
+  <p>
+    Buy your eFootball coins quickly and securely.
+    Choose your package, submit your payment details
+    and receive your order confirmation instantly.
+  </p>
 
-        <div class="hero-small">
-            ⚡ FAST • SAFE • TRUSTED
-        </div>
+  <a href="#packages" class="btn">
+    View Packages →
+  </a>
 
-        <h1>
-            eFootball™<br>
-            <span>Coin Top Up</span>
-        </h1>
+</section>
 
-        <p>
-            কম দামে eFootball Coin কিনুন।
-            দ্রুত delivery এবং WhatsApp support
-            সহ TopUpKoroBD থেকে।
+
+<section class="section">
+
+  <div class="features">
+
+    <div class="feature">
+      <div class="icon">⚡</div>
+      <b>Fast Delivery</b>
+      <p>Quick order processing.</p>
+    </div>
+
+    <div class="feature">
+      <div class="icon">🔒</div>
+      <b>Secure Order</b>
+      <p>Your order information is protected.</p>
+    </div>
+
+    <div class="feature">
+      <div class="icon">🎮</div>
+      <b>eFootball</b>
+      <p>Made for eFootball players.</p>
+    </div>
+
+    <div class="feature">
+      <div class="icon">💬</div>
+      <b>WhatsApp Support</b>
+      <p>Contact us anytime.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section" id="packages">
+
+  <div class="title">
+    <h2>Coin Packages</h2>
+    <p>Select your preferred package.</p>
+  </div>
+
+  <div class="packages" id="packageList"></div>
+
+</section>
+
+
+<section class="section" id="order">
+
+  <div class="title">
+    <h2>Place Your Order</h2>
+    <p>Enter your details carefully.</p>
+  </div>
+
+  <div class="order-box">
+
+    <div id="orderForm">
+
+      <label>Phone / WhatsApp Number</label>
+      <input
+        type="tel"
+        id="phone"
+        placeholder="01XXXXXXXXX"
+        required
+      >
+
+      <label>Gmail</label>
+      <input
+        type="email"
+        id="gmail"
+        placeholder="example@gmail.com"
+        required
+      >
+
+      <label>eFootball User ID</label>
+      <input
+        type="text"
+        id="userId"
+        placeholder="Enter your eFootball User ID"
+        required
+      >
+
+      <label>Select Package</label>
+      <select id="packageSelect" required></select>
+
+      <div class="payment">
+
+        <b>💳 bKash Payment</b>
+
+        <p style="margin-top:10px;color:#9ca8bb;">
+          Send money to:
         </p>
 
-        <button class="hero-btn"
-        onclick="showPage('packages')">
-            Order Now →
-        </button>
-
-    </div>
-
-    <div class="hero-coins">
-        🪙
-    </div>
-
-</div>
-
-
-<div class="features">
-
-    <div class="feature">
-        <div class="feature-icon">⚡</div>
-        <strong>Fast Delivery</strong>
-        <small>Quick Processing</small>
-    </div>
-
-    <div class="feature">
-        <div class="feature-icon">🛡️</div>
-        <strong>Safe Service</strong>
-        <small>Secure Order</small>
-    </div>
-
-    <div class="feature">
-        <div class="feature-icon">🎮</div>
-        <strong>eFootball</strong>
-        <small>Coin Packages</small>
-    </div>
-
-    <div class="feature">
-        <div class="feature-icon">💬</div>
-        <strong>WhatsApp</strong>
-        <small>Order Support</small>
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- PACKAGES -->
-
-<section id="packages" class="page">
-
-<h1 class="page-title">
-    🪙 eFootball Coin Packages
-</h1>
-
-<p class="page-subtitle">
-    আপনার পছন্দের package নির্বাচন করুন।
-</p>
-
-<div class="package-grid">
-
-
-<div class="package">
-<div class="coin-icon">🪙</div>
-<div class="package-name">300 Coin</div>
-<div class="package-price">390 TK</div>
-<button class="order-now"
-onclick="selectPackage('300 Coin','390')">
-Order Now
-</button>
-</div>
-
-
-<div class="package">
-<div class="badge">HOT</div>
-<div class="coin-icon">🪙</div>
-<div class="package-name">50 Coin + Luis Suarez ✅</div>
-<div class="package-price">150 TK</div>
-<button class="order-now"
-onclick="selectPackage('50 Coin + Luis Suarez','150')">
-Order Now
-</button>
-</div>
-
-
-<div class="package">
-<div class="badge">POPULAR</div>
-<div class="coin-icon">🪙</div>
-<div class="package-name">100 Coin + Iker Casillas ✅</div>
-<div class="package-price">370 TK</div>
-<button class="order-now"
-onclick="selectPackage('100 Coin + Iker Casillas','370')">
-Order Now
-</button>
-</div>
-
-
-<div class="package">
-<div class="coin-icon">🪙</div>
-<div class="package-name">130 Coin</div>
-<div class="package-price">190 TK</div>
-<button class="order-now"
-onclick="selectPackage('130 Coin','190')">
-Order Now
-</button>
-</div>
-
-
-<div class="package">
-<div class="coin-icon">🪙</div>
-<div class="package-name">550 Coin</div>
-<div class="package-price">620 TK</div>
-<button class="order-now"
-onclick="selectPackage('550 Coin','620')">
-Order Now
-</button>
-</div>
-
-
-<div class="package">
-<div class="coin-icon">🪙</div>
-<div class="package-name">1040 Coin</div>
-<div class="package-price">1100 TK</div>
-<button class="order-now"
-onclick="selectPackage('1040 Coin','1100')">
-Order Now
-</button>
-</div>
-
-
-<div class="package">
-<div class="coin-icon">🪙</div>
-<div class="package-name">2,130 Coin</div>
-<div class="package-price">2090 TK</div>
-<button class="order-now"
-onclick="selectPackage('2,130 Coin','2090')">
-Order Now
-</button>
-</div>
-
-
-<div class="package">
-<div class="coin-icon">🪙</div>
-<div class="package-name">3250 Coin</div>
-<div class="package-price">3070 TK</div>
-<button class="order-now"
-onclick="selectPackage('3250 Coin','3070')">
-Order Now
-</button>
-</div>
-
-
-<div class="package">
-<div class="coin-icon">🪙</div>
-<div class="package-name">5700 Coin</div>
-<div class="package-price">5100 TK</div>
-<button class="order-now"
-onclick="selectPackage('5700 Coin','5100')">
-Order Now
-</button>
-</div>
-
-
-<div class="package">
-<div class="coin-icon">🪙</div>
-<div class="package-name">12800 Coin</div>
-<div class="package-price">11300 TK</div>
-<button class="order-now"
-onclick="selectPackage('12800 Coin','11300')">
-Order Now
-</button>
-</div>
-
-
-<div class="package">
-<div class="coin-icon">🪙</div>
-<div class="package-name">750 Coin</div>
-<div class="package-price">780 TK</div>
-<button class="order-now"
-onclick="selectPackage('750 Coin','780')">
-Order Now
-</button>
-</div>
-
-
-<div class="package">
-<div class="coin-icon">🪙</div>
-<div class="package-name">
-12800 + 5700 Coin<br>
-Gift 130 Coin
-</div>
-<div class="package-price">16400 TK</div>
-<button class="order-now"
-onclick="selectPackage('12800 + 5700 Coin Gift 130','16400')">
-Order Now
-</button>
-</div>
-
-
-</div>
-</section>
-
-
-<!-- ORDER PAGE -->
-
-<section id="order" class="page">
-
-<h1 class="page-title">
-    📝 Confirm Your Order
-</h1>
-
-<p class="page-subtitle">
-    তথ্য দিন এবং payment complete করে order submit করুন।
-</p>
-
-
-<div class="order-box">
-
-
-<div class="selected-package">
-
-    <div class="selected-icon">🪙</div>
-
-    <div class="selected-info">
-        <small>Selected Package</small>
-        <strong id="selectedName">
-            No package selected
+        <strong id="bkashNumber">
+          01749777140
         </strong>
+
+        <p style="margin-top:8px;color:#7f8da2;font-size:13px;">
+          After payment, enter your Transaction ID below.
+        </p>
+
+      </div>
+
+      <label>bKash Transaction ID</label>
+
+      <input
+        type="text"
+        id="trx"
+        placeholder="Example: 8A7B6C5D"
+        required
+      >
+
+      <button class="submit" onclick="submitOrder()">
+        🚀 Submit Order
+      </button>
+
     </div>
 
-    <div class="selected-price">
-        <span id="selectedPrice">0</span> TK
+
+    <div class="success" id="successBox">
+
+      <h3>✅ Order Submitted!</h3>
+
+      <p id="successText"></p>
+
+      <a
+        id="whatsappButton"
+        class="btn"
+        target="_blank"
+      >
+        💬 Send Order on WhatsApp
+      </a>
+
     </div>
 
-</div>
-
-
-<label>📱 Phone Number</label>
-
-<input
-type="tel"
-id="phone"
-placeholder="01XXXXXXXXX">
-
-
-<label>📧 Gmail</label>
-
-<input
-type="email"
-id="gmail"
-placeholder="yourname@gmail.com">
-
-
-<label>🎮 konami ID </label>
-
-<input
-type="text"
-id="userId"
-placeholder="yourname@gmail.com">
-
-
-</div>
-
-
-<label>🎮 konami Password</label>
-
-<input
-type="text"
-id="konami"
-placeholder="konami Password>
-
-"payment-box">
-
-<div class="payment-title">
-    💳 Payment Information
-</div>
-
-<div>
-    bKash Send Money / Payment
-</div>
-
-<div class="bkash-number">
-    01749777140
-</div>
-
-<div class="payment-note">
-    উপরের নম্বরে আপনার package-এর
-    <b>পুরো amount</b> payment করুন।
-    Payment করার পর নিচে Transaction ID দিন।
-</div>
-
-</div>
-
-
-<label>🧾 bKash Transaction ID</label>
-
-<input
-type="text"
-id="trx"
-placeholder="Example: 9H7ABC1234">
-
-<div class="help-text">
-Payment করার পর পাওয়া Transaction ID এখানে দিন।
-</div>
-
-
-<button
-class="confirm-btn"
-onclick="submitOrder()">
-
-✅ Payment Done — Confirm Order →
-
-</button>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- SUCCESS -->
+<section class="section" id="faq">
 
-<section id="success" class="page">
+  <div class="title">
+    <h2>FAQ</h2>
+    <p>Frequently asked questions.</p>
+  </div>
 
-<div class="success-box">
+  <div class="faq">
 
-<div class="success-icon">
-✓
-</div>
+    <details>
+      <summary>How do I order?</summary>
+      <p>
+        Select a package, enter your phone, Gmail,
+        eFootball User ID and bKash Transaction ID,
+        then submit your order.
+      </p>
+    </details>
 
-<h2>
-Order Submitted!
-</h2>
+    <details>
+      <summary>Do you need my KONAMI password?</summary>
+      <p>
+        No. Never provide your KONAMI password.
+        We do not need or collect it.
+      </p>
+    </details>
 
-<p>
-আপনার order information তৈরি হয়েছে।
-নিচের button চাপলে WhatsApp-এ আপনার order
-message তৈরি হবে।
-</p>
+    <details>
+      <summary>How do I pay?</summary>
+      <p>
+        Pay through bKash using the number shown
+        on the order page and submit your Transaction ID.
+      </p>
+    </details>
 
+    <details>
+      <summary>Where can I contact support?</summary>
+      <p>
+        Contact us through WhatsApp using the
+        WhatsApp button on the website.
+      </p>
+    </details>
 
-<div class="order-info">
-
-<div class="info-row">
-<span>Package</span>
-<span id="finalPackage">-</span>
-</div>
-
-<div class="info-row">
-<span>Price</span>
-<span id="finalPrice">-</span>
-</div>
-
-<div class="info-row">
-<span>User ID</span>
-<span id="finalUser">-</span>
-</div>
-
-<div class="info-row">
-<span>Phone</span>
-<span id="finalPhone">-</span>
-</div>
-
-<div class="info-row">
-<span>Gmail</span>
-<span id="finalGmail">-</span>
-</div>
-
-<div class="info-row">
-<span>KONAMI ID</span>
-<span id="finalKonami">-</span>
-</div>
-
-<div class="info-row">
-<span>Transaction ID</span>
-<span id="finalTrx">-</span>
-</div>
-
-</div>
-
-
-<a
-id="whatsappLink"
-class="whatsapp-btn"
-target="_blank">
-
-💬 Send Order to WhatsApp
-
-</a>
-
-</div>
-
-</section>
-
-
-<!-- FAQ -->
-
-<section id="faq" class="page">
-
-<h1 class="page-title">
-❓ Frequently Asked Questions
-</h1>
-
-<p class="page-subtitle">
-কিছু সাধারণ প্রশ্নের উত্তর।
-</p>
-
-
-<div class="faq">
-
-<div class="faq-item">
-<h3>🎮 eFootball User ID কোথায় পাব?</h3>
-<p>
-eFootball game-এর profile/account section
-থেকে আপনার User ID দেখতে পারবেন।
-</p>
-</div>
-
-
-<div class="faq-item">
-<h3>🔐 KONAMI password দিতে হবে?</h3>
-<p>
-না। নিরাপত্তার জন্য website-এ কখনো
-KONAMI password দেবেন না।
-</p>
-</div>
-
-
-<div class="faq-item">
-<h3>💳 Payment কীভাবে করবো?</h3>
-<p>
-Package select করার পর website-এ দেওয়া
-bKash নম্বরে payment করুন এবং Transaction ID দিন।
-</p>
-</div>
-
-
-<div class="faq-item">
-<h3>💬 Order কোথায় যাবে?</h3>
-<p>
-Order submit করার পর WhatsApp-এ
-order details পাঠানোর জন্য button দেওয়া হবে।
-</p>
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
 <footer>
-
-<div class="footer-logo">
-🎮 TopUpKoro<span>BD</span>
-</div>
-
-Fast • Safe • Affordable
-
-<br><br>
-
-© 2026 TopUpKoroBD
-
+  © 2026 TopUpKoroBD • All Rights Reserved
 </footer>
 
 
-<script>
+<a
+  class="whatsapp"
+  href="https://wa.me/8801749777140"
+  target="_blank"
+>
+  ☎
+</a>
 
-/* YOUR WHATSAPP NUMBER */
-const WHATSAPP_NUMBER = "8801749777140";
+
+<script type="module">
+
+/* =========================================
+   FIREBASE CONFIG
+   Replace these values with your Firebase
+   project configuration.
+========================================= */
+
+const firebaseConfig = {
+
+  apiKey:
+    "PASTE_YOUR_FIREBASE_API_KEY",
+
+  authDomain:
+    "PASTE_YOUR_PROJECT.firebaseapp.com",
+
+  projectId:
+    "PASTE_YOUR_PROJECT_ID",
+
+  storageBucket:
+    "PASTE_YOUR_PROJECT.firebasestorage.app",
+
+  messagingSenderId:
+    "PASTE_YOUR_SENDER_ID",
+
+  appId:
+    "PASTE_YOUR_APP_ID"
+
+};
 
 
-let selectedPackage = "";
-let selectedPrice = "";
+/* =========================================
+   FIREBASE IMPORTS
+========================================= */
+
+import {
+  initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-/* PAGE CHANGE */
+const app =
+  initializeApp(firebaseConfig);
 
-function showPage(pageId){
+const db =
+  getFirestore(app);
 
-    document.querySelectorAll(".page").forEach(function(page){
 
-        page.classList.remove("active");
+/* =========================================
+   DEFAULT PACKAGES
+========================================= */
 
-    });
+const fallbackPackages = [
 
-    const page = document.getElementById(pageId);
+  {
+    name:"300 Coin",
+    price:390,
+    badge:""
+  },
 
-    if(page){
-        page.classList.add("active");
+  {
+    name:"50 Coin + Luis Suarez",
+    price:150,
+    badge:"HOT"
+  },
+
+  {
+    name:"100 Coin + Iker Casillas",
+    price:370,
+    badge:"POPULAR"
+  },
+
+  {
+    name:"130 Coin",
+    price:190,
+    badge:""
+  },
+
+  {
+    name:"550 Coin",
+    price:620,
+    badge:""
+  },
+
+  {
+    name:"1040 Coin",
+    price:1100,
+    badge:""
+  },
+
+  {
+    name:"2,130 Coin",
+    price:2090,
+    badge:""
+  },
+
+  {
+    name:"3250 Coin",
+    price:3070,
+    badge:""
+  },
+
+  {
+    name:"5700 Coin",
+    price:5100,
+    badge:""
+  },
+
+  {
+    name:"12800 Coin",
+    price:11300,
+    badge:""
+  },
+
+  {
+    name:"750 Coin",
+    price:780,
+    badge:""
+  },
+
+  {
+    name:"12800 + 5700 Coin Gift 130",
+    price:16400,
+    badge:"SPECIAL"
+  }
+
+];
+
+
+let packages =
+  fallbackPackages;
+
+
+/* =========================================
+   LOAD PACKAGES
+========================================= */
+
+async function loadPackages(){
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(db,"packages")
+      );
+
+    if(!snapshot.empty){
+
+      packages =
+        snapshot.docs
+        .map(doc => ({
+          id:doc.id,
+          ...doc.data()
+        }))
+        .filter(pkg =>
+          pkg.active !== false
+        )
+        .sort(
+          (a,b)=>
+            (a.sort || 0) -
+            (b.sort || 0)
+        );
+
     }
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+  }catch(error){
+
+    console.log(
+      "Using default packages:",
+      error
+    );
+
+  }
+
+  renderPackages();
+
 }
 
 
-/* PACKAGE SELECT */
+function renderPackages(){
 
-function selectPackage(name,price){
+  const list =
+    document.getElementById(
+      "packageList"
+    );
 
-    selectedPackage = name;
-    selectedPrice = price;
+  const select =
+    document.getElementById(
+      "packageSelect"
+    );
 
-    document.getElementById("selectedName")
-        .innerText = name;
+  list.innerHTML = "";
+  select.innerHTML =
+    `<option value="">Choose a package</option>`;
 
-    document.getElementById("selectedPrice")
-        .innerText = price;
 
-    showPage("order");
+  packages.forEach(
+    (pkg,index)=>{
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "card";
+
+      card.innerHTML = `
+
+        ${
+          pkg.badge
+          ?
+          `<div class="hot">
+            ${pkg.badge}
+          </div>`
+          :
+          ""
+        }
+
+        <div class="coin">
+          🪙 ${pkg.name}
+        </div>
+
+        <div class="price">
+          ৳${Number(pkg.price).toLocaleString()}
+          <small> BDT</small>
+        </div>
+
+        <button
+          onclick="selectPackage(${index})"
+        >
+          Buy Now
+        </button>
+
+      `;
+
+      list.appendChild(card);
+
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        index;
+
+      option.textContent =
+        `${pkg.name} — ৳${Number(pkg.price).toLocaleString()}`;
+
+      select.appendChild(option);
+
+    }
+  );
+
 }
 
 
-/* ORDER SUBMIT */
+window.selectPackage =
+function(index){
 
-function submitOrder(){
+  document.getElementById(
+    "packageSelect"
+  ).value = index;
 
-    const phone =
-    document.getElementById("phone").value.trim();
+  document.getElementById(
+    "order"
+  ).scrollIntoView({
+    behavior:"smooth"
+  });
 
-    const gmail =
-    document.getElementById("gmail").value.trim();
-
-    const userId =
-    document.getElementById("userId").value.trim();
-
-    const konami =
-    document.getElementById("konami").value.trim();
-
-    const trx =
-    document.getElementById("trx").value.trim();
+};
 
 
-    if(!selectedPackage){
+/* =========================================
+   ORDER SUBMISSION
+========================================= */
 
-        alert("আগে একটি package select করুন।");
+window.submitOrder =
+async function(){
 
-        showPage("packages");
+  const phone =
+    document.getElementById(
+      "phone"
+    ).value.trim();
 
-        return;
-    }
+  const gmail =
+    document.getElementById(
+      "gmail"
+    ).value.trim();
 
+  const userId =
+    document.getElementById(
+      "userId"
+    ).value.trim();
 
-    if(!phone){
+  const packageIndex =
+    document.getElementById(
+      "packageSelect"
+    ).value;
 
-        alert("Phone number দিন।");
-
-        return;
-    }
-
-
-    if(!gmail){
-
-        alert("Gmail দিন।");
-
-        return;
-    }
-
-
-    if(!userId){
-
-        alert("eFootball User ID দিন।");
-
-        return;
-    }
-
-
-    if(!konami){
-
-        alert("KONAMI Account Email / ID দিন।");
-
-        return;
-    }
+  const trx =
+    document.getElementById(
+      "trx"
+    ).value.trim();
 
 
-    if(!trx){
+  if(
+    !phone ||
+    !gmail ||
+    !userId ||
+    packageIndex === "" ||
+    !trx
+  ){
 
-        alert("Payment করার পর Transaction ID দিন।");
+    alert(
+      "Please fill in all required fields."
+    );
 
-        return;
-    }
+    return;
 
-
-    /* SUCCESS PAGE */
-
-    document.getElementById("finalPackage")
-        .innerText = selectedPackage;
-
-    document.getElementById("finalPrice")
-        .innerText = selectedPrice + " TK";
-
-    document.getElementById("finalUser")
-        .innerText = userId;
-
-    document.getElementById("finalPhone")
-        .innerText = phone;
-
-    document.getElementById("finalGmail")
-        .innerText = gmail;
-
-    document.getElementById("finalKonami")
-        .innerText = konami;
-
-    document.getElementById("finalTrx")
-        .innerText = trx;
+  }
 
 
-    /* WHATSAPP MESSAGE */
-
-    const message =
-`🎮 NEW TOPUPKOROBD ORDER
-
-📦 Package:
-${selectedPackage}
-
-💰 Price:
-${selectedPrice} TK
-
-🎮 eFootball User ID:
-${userId}
-
-🎮 KONAMI Account:
-${konami}
-
-📱 Phone:
-${phone}
-
-📧 Gmail:
-${gmail}
-
-💳 Payment:
-bKash
-
-🧾 Transaction ID:
-${trx}
-
-⚠️ Please verify the payment and order information.
-
-Thank you 🙏`;
+  const selectedPackage =
+    packages[
+      Number(packageIndex)
+    ];
 
 
-    const whatsappURL =
-    "https://wa.me/" +
-    WHATSAPP_NUMBER +
-    "?text=" +
-    encodeURIComponent(message);
+  const orderId =
+    "TKB-" +
+    Date.now()
+      .toString(36)
+      .toUpperCase();
 
 
-    document.getElementById("whatsappLink")
-        .href = whatsappURL;
+  const order = {
+
+    orderId,
+
+    phone,
+
+    gmail,
+
+    userId,
+
+    packageName:
+      selectedPackage.name,
+
+    amount:
+      Number(selectedPackage.price),
+
+    transactionId:
+      trx,
+
+    status:
+      "pending",
+
+    createdAt:
+      serverTimestamp()
+
+  };
 
 
-    showPage("success");
+  try{
 
-}
+    await addDoc(
+      collection(db,"orders"),
+      order
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    /*
+      If Firebase is not connected yet,
+      show the order confirmation locally.
+    */
+
+  }
+
+
+  document.getElementById(
+    "orderForm"
+  ).style.display =
+    "none";
+
+
+  document.getElementById(
+    "successBox"
+  ).style.display =
+    "block";
+
+
+  document.getElementById(
+    "successText"
+  ).innerHTML = `
+
+    <b>Order ID:</b> ${orderId}<br>
+
+    <b>Package:</b>
+    ${selectedPackage.name}<br>
+
+    <b>Amount:</b>
+    ৳${Number(selectedPackage.price).toLocaleString()}<br>
+
+    <b>eFootball ID:</b>
+    ${userId}<br>
+
+    <b>Phone:</b>
+    ${phone}<br>
+
+    <b>Gmail:</b>
+    ${gmail}<br>
+
+    <b>Transaction ID:</b>
+    ${trx}<br><br>
+
+    Please contact us on WhatsApp
+    with your Order ID.
+  `;
+
+
+  const message =
+    `Hello TopUpKoroBD%0A%0A` +
+
+    `Order ID: ${orderId}%0A` +
+
+    `Package: ${selectedPackage.name}%0A` +
+
+    `Amount: ৳${selectedPackage.price}%0A` +
+
+    `eFootball ID: ${userId}%0A` +
+
+    `Phone: ${phone}%0A` +
+
+    `Gmail: ${gmail}%0A` +
+
+    `Transaction ID: ${trx}`;
+
+
+  document.getElementById(
+    "whatsappButton"
+  ).href =
+    `https://wa.me/8801749777140?text=${message}`;
+
+};
+
+
+/* =========================================
+   START
+========================================= */
+
+loadPackages();
 
 </script>
 
 </body>
-        </html>
+</html>
