@@ -2,385 +2,364 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TopUpKoroBD | eFootball Coin Top Up</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TopUpKoroBD — eFootball Top Up</title>
 
 <style>
 *{
-  margin:0;
-  padding:0;
   box-sizing:border-box;
-  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  background:#050914;
-  color:#fff;
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:radial-gradient(circle at 20% 0%,#12366b,#07152f 40%,#030914);
+  color:white;
   min-height:100vh;
 }
 
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 10%,#005eff33,transparent 30%),
-    radial-gradient(circle at 80% 80%,#00d9ff22,transparent 30%);
-  pointer-events:none;
-  z-index:-1;
-}
-
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:#07101ddd;
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid #ffffff12;
-}
-
-.nav{
-  max-width:1200px;
+.wrap{
+  max-width:1150px;
   margin:auto;
-  padding:18px 20px;
+  padding:18px;
+}
+
+.glass{
+  background:rgba(9,24,50,.75);
+  border:1px solid rgba(80,180,255,.22);
+  box-shadow:0 18px 60px rgba(0,0,0,.3);
+  backdrop-filter:blur(16px);
+  border-radius:24px;
+}
+
+.top{
+  position:sticky;
+  top:10px;
+  z-index:20;
+  padding:14px 18px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
 }
 
-.logo{
-  font-size:24px;
+.brand{
+  font-size:22px;
   font-weight:900;
-  color:#fff;
 }
 
-.logo span{
-  color:#00b7ff;
+.brand span{
+  color:#26d9ff;
 }
 
-nav a{
-  color:#aaa;
-  text-decoration:none;
-  margin-left:22px;
-  font-size:14px;
+.menu{
+  font-size:28px;
+  background:none;
+  border:0;
+  color:white;
+  cursor:pointer;
 }
 
-nav a:hover{
-  color:#00b7ff;
+.dropdown{
+  display:none;
+  position:absolute;
+  right:18px;
+  top:65px;
+  width:210px;
+  padding:10px;
+  background:#081a38;
+  border:1px solid #1b6ca0;
+  border-radius:16px;
 }
 
-.online{
-  color:#00ff9d;
-  font-size:12px;
-  margin-left:20px;
+.dropdown button{
+  width:100%;
+  padding:12px;
+  border:0;
+  background:transparent;
+  color:white;
+  text-align:left;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.dropdown button:hover{
+  background:#12365c;
 }
 
 .hero{
-  max-width:1200px;
-  margin:auto;
-  padding:90px 20px 60px;
+  padding:60px 25px 40px;
   text-align:center;
+  margin-top:18px;
 }
 
-.badge{
+.pill{
   display:inline-block;
-  padding:8px 15px;
-  border:1px solid #00b7ff55;
-  background:#00b7ff12;
-  color:#55d4ff;
-  border-radius:30px;
-  font-size:13px;
-  margin-bottom:20px;
+  padding:7px 12px;
+  border:1px solid #27cfff66;
+  border-radius:99px;
+  color:#64e6ff;
+  background:#0a3a5a66;
+  font-size:12px;
+  font-weight:bold;
 }
 
 .hero h1{
-  font-size:clamp(40px,7vw,75px);
-  line-height:1;
-  font-weight:900;
-  margin-bottom:22px;
+  font-size:clamp(35px,7vw,70px);
+  margin:18px 0 10px;
 }
 
 .hero h1 span{
-  color:#00b7ff;
+  color:#20d9ff;
 }
 
 .hero p{
-  color:#9ca8bb;
-  max-width:650px;
+  color:#b8c9df;
+  max-width:680px;
   margin:auto;
   line-height:1.7;
 }
 
 .btn{
-  display:inline-block;
-  margin-top:30px;
-  padding:15px 28px;
-  background:linear-gradient(135deg,#008cff,#00c6ff);
-  color:#fff;
-  text-decoration:none;
-  border-radius:12px;
-  font-weight:bold;
-  box-shadow:0 10px 35px #008cff33;
   border:0;
+  border-radius:14px;
+  padding:13px 20px;
+  font-weight:900;
   cursor:pointer;
 }
 
+.primary{
+  background:linear-gradient(135deg,#14cfff,#2172ff);
+  color:white;
+  box-shadow:0 10px 30px #119cff3b;
+}
+
 .section{
-  max-width:1200px;
-  margin:auto;
-  padding:55px 20px;
-}
-
-.title{
-  text-align:center;
-  margin-bottom:35px;
-}
-
-.title h2{
-  font-size:34px;
-}
-
-.title p{
-  color:#8290a5;
-  margin-top:10px;
-}
-
-.features{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-}
-
-.feature{
+  margin-top:20px;
   padding:25px;
-  border:1px solid #ffffff10;
-  background:#ffffff06;
-  border-radius:18px;
-  text-align:center;
 }
 
-.feature .icon{
-  font-size:30px;
-  margin-bottom:12px;
-}
-
-.feature p{
-  color:#8995a8;
-  font-size:13px;
-  margin-top:8px;
+.section h2{
+  margin-top:0;
 }
 
 .packages{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
+  grid-template-columns:repeat(auto-fit,minmax(205px,1fr));
+  gap:15px;
 }
 
 .card{
   position:relative;
-  background:linear-gradient(145deg,#101a2d,#080e1b);
-  border:1px solid #ffffff10;
+  padding:20px;
+  border:1px solid #ffffff14;
+  background:linear-gradient(145deg,#102b54aa,#07152dcc);
   border-radius:20px;
-  padding:25px;
-  transition:.25s;
+  transition:.2s;
 }
 
 .card:hover{
-  transform:translateY(-6px);
-  border-color:#00b7ff66;
-  box-shadow:0 15px 50px #008cff18;
+  transform:translateY(-3px);
+  border-color:#25d8ff77;
 }
 
-.card .coin{
-  font-size:28px;
+.badge{
+  position:absolute;
+  right:12px;
+  top:12px;
+  font-size:10px;
   font-weight:900;
+  background:#18cfff;
+  color:#001426;
+  padding:5px 8px;
+  border-radius:99px;
 }
 
-.card .coin span{
-  color:#00b7ff;
+.coin{
+  font-size:22px;
+  font-weight:900;
+  margin:8px 0;
+}
+
+.desc{
+  color:#9fb4ce;
+  font-size:13px;
+  min-height:34px;
 }
 
 .price{
-  font-size:25px;
+  font-size:22px;
+  font-weight:900;
+  margin:14px 0;
+}
+
+.order{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  font-size:12px;
+  color:#a9bdd6;
   font-weight:bold;
-  margin:18px 0;
 }
 
-.price small{
-  color:#8995a8;
-  font-size:13px;
-}
-
-.card button{
+.field input,
+.field select{
   width:100%;
-  padding:12px;
-  border:0;
-  border-radius:10px;
-  background:#00aaff;
-  color:#fff;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.hot{
-  position:absolute;
-  right:15px;
-  top:15px;
-  background:#ff3d71;
-  padding:5px 9px;
-  border-radius:20px;
-  font-size:10px;
-}
-
-.order-box{
-  max-width:650px;
-  margin:auto;
-  padding:30px;
-  border:1px solid #ffffff10;
-  background:#ffffff06;
-  border-radius:22px;
-}
-
-input,select{
-  width:100%;
-  padding:14px;
-  margin-top:8px;
-  margin-bottom:17px;
-  background:#080f1c;
-  color:#fff;
-  border:1px solid #ffffff15;
-  border-radius:10px;
+  padding:13px;
+  border-radius:12px;
+  border:1px solid #ffffff18;
+  background:#06152d;
+  color:white;
   outline:none;
 }
 
-input:focus,select:focus{
-  border-color:#00aaff;
+.field input:focus,
+.field select:focus{
+  border-color:#1bd8ff;
 }
 
-label{
-  color:#aab5c5;
-  font-size:13px;
+.pay{
+  padding:14px;
+  border-radius:14px;
+  background:#0b294b;
+  border:1px solid #21cfff38;
+  color:#cde5ff;
 }
 
-.payment{
-  background:#00b7ff0c;
-  border:1px solid #00b7ff30;
-  padding:18px;
-  border-radius:13px;
-  margin-bottom:18px;
-}
-
-.payment strong{
-  color:#00c6ff;
-}
-
-.submit{
-  width:100%;
-  padding:15px;
-  border:0;
-  border-radius:12px;
-  background:linear-gradient(135deg,#008cff,#00c6ff);
-  color:#fff;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.success{
-  display:none;
-  text-align:center;
-  padding:30px;
-  background:#00ff9d08;
-  border:1px solid #00ff9d33;
-  border-radius:18px;
-}
-
-.success h3{
-  color:#00ff9d;
-  margin-bottom:15px;
-}
-
-.success p{
-  color:#aeb9c9;
-  line-height:1.8;
-}
-
-.faq{
-  max-width:800px;
-  margin:auto;
-}
-
-details{
-  background:#ffffff06;
-  border:1px solid #ffffff10;
-  border-radius:13px;
-  margin-bottom:12px;
-  padding:17px;
-}
-
-summary{
-  cursor:pointer;
-  font-weight:bold;
-}
-
-details p{
-  color:#8d99ab;
-  margin-top:12px;
+.notice{
+  color:#91abc8;
+  font-size:12px;
   line-height:1.6;
 }
 
-footer{
+.footer{
   text-align:center;
-  border-top:1px solid #ffffff0d;
-  padding:30px 20px;
-  color:#667286;
-  font-size:13px;
+  color:#7289a7;
+  padding:30px;
 }
 
-.whatsapp{
+.wa{
   position:fixed;
   right:20px;
   bottom:20px;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  background:#25d366;
-  display:flex;
+  background:#20c76a;
+  color:white;
+  text-decoration:none;
+  padding:14px 17px;
+  border-radius:99px;
+  font-weight:900;
+  box-shadow:0 12px 30px #0007;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0009;
+  z-index:50;
   align-items:center;
   justify-content:center;
-  color:#fff;
-  text-decoration:none;
-  font-size:27px;
-  box-shadow:0 10px 30px #25d36644;
-  z-index:200;
+  padding:18px;
 }
 
-@media(max-width:900px){
-  .packages{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .features{
-    grid-template-columns:repeat(2,1fr);
-  }
+.modalbox{
+  width:min(900px,100%);
+  max-height:90vh;
+  overflow:auto;
+  padding:22px;
+  background:#071a36;
+  border:1px solid #2bd7ff44;
+  border-radius:22px;
 }
 
-@media(max-width:600px){
-  nav{
-    display:none;
-  }
+.modalbox.small{
+  width:min(420px,100%);
+}
 
-  .hero{
-    padding-top:65px;
-  }
+.close{
+  float:right;
+  background:none;
+  border:0;
+  color:white;
+  font-size:25px;
+  cursor:pointer;
+}
 
-  .packages,
-  .features{
+.adminnav{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:10px 0 18px;
+}
+
+.adminnav button{
+  background:#0d2b4e;
+  color:white;
+  border:1px solid #ffffff18;
+  padding:9px 12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.adminpanel{
+  display:none;
+}
+
+.adminpanel.active{
+  display:block;
+}
+
+.rows{
+  display:grid;
+  gap:10px;
+}
+
+.row{
+  padding:14px;
+  background:#0b2444;
+  border:1px solid #ffffff12;
+  border-radius:14px;
+}
+
+.row small{
+  color:#91a9c5;
+}
+
+.two{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.danger{
+  background:#c92f4d!important;
+  color:white;
+}
+
+.muted{
+  color:#8fa7c3;
+}
+
+@media(max-width:650px){
+  .order,
+  .two{
     grid-template-columns:1fr;
   }
 
-  .order-box{
-    padding:20px;
+  .field.full{
+    grid-column:auto;
   }
 }
 </style>
@@ -388,570 +367,1227 @@ footer{
 
 <body>
 
-<header>
-  <div class="nav">
+<div class="wrap">
 
-    <div class="logo">
-      TopUp<span>KoroBD</span>
-    </div>
+<header class="top glass">
 
-    <div>
-      <nav>
-        <a href="#home">Home</a>
-        <a href="#packages">Packages</a>
-        <a href="#order">Order</a>
-        <a href="#faq">FAQ</a>
-      </nav>
+  <div class="brand">
+    TOPUP<span>KORO</span>BD
+  </div>
 
-      <span class="online">● ONLINE</span>
-    </div>
+  <button class="menu" onclick="toggleMenu()">⋮</button>
+
+  <div id="menu" class="dropdown">
+
+    <button onclick="openAdminLogin()">
+      🔐 Admin Panel
+    </button>
+
+    <button onclick="document.getElementById('packages').scrollIntoView()">
+      🪙 Packages
+    </button>
+
+    <button onclick="document.getElementById('order').scrollIntoView()">
+      🛒 Place Order
+    </button>
 
   </div>
+
 </header>
 
 
-<section class="hero" id="home">
+<section class="hero glass">
 
-  <div class="badge">⚡ FAST • SAFE • PREMIUM</div>
+  <span class="pill">
+    ⚡ FAST • SAFE • BD PAYMENT
+  </span>
 
   <h1>
-    eFootball™ <span>Coin Top Up</span>
+    eFootball <span>Coin Top Up</span>
   </h1>
 
   <p>
-    Buy your eFootball coins quickly and securely.
-    Choose your package, submit your payment details
-    and receive your order confirmation instantly.
+    Choose your package and place your order directly through WhatsApp.
   </p>
 
-  <a href="#packages" class="btn">
-    View Packages →
-  </a>
+  <br>
+
+  <button
+    class="btn primary"
+    onclick="document.getElementById('order').scrollIntoView()">
+    Order Now →
+  </button>
 
 </section>
 
 
-<section class="section">
+<section id="packages" class="section glass">
 
-  <div class="features">
+  <h2>🔥 Coin Packages</h2>
 
-    <div class="feature">
-      <div class="icon">⚡</div>
-      <b>Fast Delivery</b>
-      <p>Quick order processing.</p>
-    </div>
-
-    <div class="feature">
-      <div class="icon">🔒</div>
-      <b>Secure Order</b>
-      <p>Your order information is protected.</p>
-    </div>
-
-    <div class="feature">
-      <div class="icon">🎮</div>
-      <b>eFootball</b>
-      <p>Made for eFootball players.</p>
-    </div>
-
-    <div class="feature">
-      <div class="icon">💬</div>
-      <b>WhatsApp Support</b>
-      <p>Contact us anytime.</p>
-    </div>
-
-  </div>
+  <div id="packageGrid" class="packages"></div>
 
 </section>
 
 
-<section class="section" id="packages">
+<section id="order" class="section glass">
 
-  <div class="title">
-    <h2>Coin Packages</h2>
-    <p>Select your preferred package.</p>
-  </div>
+  <h2>🛒 Place Your Order</h2>
 
-  <div class="packages" id="packageList"></div>
+  <p class="notice">
+    All fields are required. After clicking Place Order,
+    your complete order information will be sent to
+    WhatsApp <b>+8801749777140</b>.
+  </p>
 
-</section>
+  <form id="orderForm" class="order">
 
-
-<section class="section" id="order">
-
-  <div class="title">
-    <h2>Place Your Order</h2>
-    <p>Enter your details carefully.</p>
-  </div>
-
-  <div class="order-box">
-
-    <div id="orderForm">
-
-      <label>Phone / WhatsApp Number</label>
+    <div class="field">
+      <label>Name *</label>
       <input
-        type="tel"
+        id="name"
+        required
+        placeholder="Your full name">
+    </div>
+
+
+    <div class="field">
+      <label>Phone Number *</label>
+      <input
         id="phone"
-        placeholder="01XXXXXXXXX"
         required
-      >
+        type="tel"
+        placeholder="01XXXXXXXXX">
+    </div>
 
-      <label>Gmail</label>
+
+    <div class="field">
+      <label>KONAMI ID *</label>
       <input
-        type="email"
+        id="konami"
+        required
+        placeholder="Your KONAMI ID">
+    </div>
+
+
+    <div class="field">
+      <label>Gmail *</label>
+      <input
         id="gmail"
-        placeholder="example@gmail.com"
         required
-      >
+        type="email"
+        placeholder="example@gmail.com">
+    </div>
 
-      <label>eFootball User ID</label>
+
+    <div class="field full">
+
+      <label>Package *</label>
+
+      <select id="package" required>
+
+        <option value="">
+          Choose a package
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="field full">
+
+      <label>bKash Transaction ID *</label>
+
       <input
-        type="text"
-        id="userId"
-        placeholder="Enter your eFootball User ID"
+        id="trx"
         required
-      >
+        placeholder="Enter bKash TrxID">
 
-      <label>Select Package</label>
-      <select id="packageSelect" required></select>
+    </div>
 
-      <div class="payment">
 
-        <b>💳 bKash Payment</b>
+    <div class="field full">
 
-        <p style="margin-top:10px;color:#9ca8bb;">
-          Send money to:
-        </p>
+      <div class="pay">
 
-        <strong id="bkashNumber">
-          01749777140
-        </strong>
+        💳 <b>bKash Payment</b><br><br>
 
-        <p style="margin-top:8px;color:#7f8da2;font-size:13px;">
-          After payment, enter your Transaction ID below.
-        </p>
+        Send money to:
+
+        <b>01749777140</b>
+
+        <br><br>
+
+        Then enter your Transaction ID above.
 
       </div>
 
-      <label>bKash Transaction ID</label>
+    </div>
+
+
+    <div class="field full">
+
+      <button
+        class="btn primary"
+        type="submit">
+
+        📲 Place Order via WhatsApp
+
+      </button>
+
+    </div>
+
+  </form>
+
+</section>
+
+
+<section class="section glass">
+
+  <h2>ℹ️ Important</h2>
+
+  <p class="notice">
+
+    Never share your KONAMI password with anyone.
+    This website does not collect KONAMI passwords.
+
+  </p>
+
+</section>
+
+
+<footer class="footer">
+
+  © 2026 TopUpKoroBD • eFootball Top Up
+
+</footer>
+
+</div>
+
+
+<a
+  class="wa"
+  href="https://wa.me/8801749777140"
+  target="_blank">
+
+  💬 WhatsApp
+
+</a>
+
+
+<!-- ADMIN LOGIN -->
+
+<div id="adminLogin" class="modal">
+
+  <div class="modalbox small">
+
+    <button
+      class="close"
+      onclick="closeModal('adminLogin')">
+      ×
+    </button>
+
+    <h2>🔐 Admin Login</h2>
+
+    <p class="muted">
+      Enter your admin password.
+    </p>
+
+    <div class="field">
+
+      <label>Password</label>
 
       <input
-        type="text"
-        id="trx"
-        placeholder="Example: 8A7B6C5D"
-        required
-      >
+        id="adminPass"
+        type="password"
+        placeholder="Admin password">
 
-      <button class="submit" onclick="submitOrder()">
-        🚀 Submit Order
+    </div>
+
+    <br>
+
+    <button
+      class="btn primary"
+      onclick="loginAdmin()">
+
+      Login
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ADMIN PANEL -->
+
+<div id="adminModal" class="modal">
+
+  <div class="modalbox">
+
+    <button
+      class="close"
+      onclick="closeModal('adminModal')">
+      ×
+    </button>
+
+    <h2>⚙️ Admin Panel</h2>
+
+
+    <div class="adminnav">
+
+      <button onclick="showTab('orders')">
+        📦 Orders
+      </button>
+
+      <button onclick="showTab('packagesAdmin')">
+        🪙 Packages
+      </button>
+
+      <button onclick="showTab('settings')">
+        ⚙️ Settings
+      </button>
+
+      <button onclick="showTab('security')">
+        🔑 Security
+      </button>
+
+      <button
+        class="danger"
+        onclick="logoutAdmin()">
+
+        Logout
+
       </button>
 
     </div>
 
 
-    <div class="success" id="successBox">
+    <!-- ORDERS -->
 
-      <h3>✅ Order Submitted!</h3>
+    <div
+      id="orders"
+      class="adminpanel active">
 
-      <p id="successText"></p>
+      <h3>📦 Orders</h3>
 
-      <a
-        id="whatsappButton"
-        class="btn"
-        target="_blank"
-      >
-        💬 Send Order on WhatsApp
-      </a>
+      <div
+        id="ordersList"
+        class="rows">
+      </div>
+
+    </div>
+
+
+    <!-- PACKAGES -->
+
+    <div
+      id="packagesAdmin"
+      class="adminpanel">
+
+      <h3>🪙 Manage Packages</h3>
+
+
+      <div class="two">
+
+        <div class="field">
+
+          <label>Package Name</label>
+
+          <input id="newName">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>Price</label>
+
+          <input
+            id="newPrice"
+            type="number">
+
+        </div>
+
+      </div>
+
+      <br>
+
+
+      <div class="two">
+
+        <div class="field">
+
+          <label>Badge</label>
+
+          <input
+            id="newBadge"
+            placeholder="HOT / POPULAR">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>Description</label>
+
+          <input id="newDesc">
+
+        </div>
+
+      </div>
+
+      <br>
+
+
+      <button
+        class="btn primary"
+        onclick="addPackage()">
+
+        Add Package
+
+      </button>
+
+
+      <br><br>
+
+      <div
+        id="adminPackages"
+        class="rows">
+      </div>
+
+    </div>
+
+
+    <!-- SETTINGS -->
+
+    <div
+      id="settings"
+      class="adminpanel">
+
+      <h3>⚙️ Website Settings</h3>
+
+
+      <div class="field">
+
+        <label>bKash Number</label>
+
+        <input id="bkashSetting">
+
+      </div>
+
+      <br>
+
+
+      <div class="field">
+
+        <label>WhatsApp Number</label>
+
+        <input id="waSetting">
+
+      </div>
+
+      <br>
+
+
+      <button
+        class="btn primary"
+        onclick="saveSettings()">
+
+        Save Settings
+
+      </button>
+
+    </div>
+
+
+    <!-- SECURITY -->
+
+    <div
+      id="security"
+      class="adminpanel">
+
+      <h3>🔑 Change Admin Password</h3>
+
+
+      <div class="field">
+
+        <label>New Password</label>
+
+        <input
+          id="newPassword"
+          type="password">
+
+      </div>
+
+      <br>
+
+
+      <button
+        class="btn primary"
+        onclick="changePassword()">
+
+        Change Password
+
+      </button>
 
     </div>
 
   </div>
 
-</section>
+</div>
 
 
-<section class="section" id="faq">
+<script>
 
-  <div class="title">
-    <h2>FAQ</h2>
-    <p>Frequently asked questions.</p>
-  </div>
-
-  <div class="faq">
-
-    <details>
-      <summary>How do I order?</summary>
-      <p>
-        Select a package, enter your phone, Gmail,
-        eFootball User ID and bKash Transaction ID,
-        then submit your order.
-      </p>
-    </details>
-
-    <details>
-      <summary>Do you need my KONAMI password?</summary>
-      <p>
-        No. Never provide your KONAMI password.
-        We do not need or collect it.
-      </p>
-    </details>
-
-    <details>
-      <summary>How do I pay?</summary>
-      <p>
-        Pay through bKash using the number shown
-        on the order page and submit your Transaction ID.
-      </p>
-    </details>
-
-    <details>
-      <summary>Where can I contact support?</summary>
-      <p>
-        Contact us through WhatsApp using the
-        WhatsApp button on the website.
-      </p>
-    </details>
-
-  </div>
-
-</section>
-
-
-<footer>
-  © 2026 TopUpKoroBD • All Rights Reserved
-</footer>
-
-
-<a
-  class="whatsapp"
-  href="https://wa.me/8801749777140"
-  target="_blank"
->
-  ☎
-</a>
-
-
-<script type="module">
-
-/* =========================================
-   FIREBASE CONFIG
-   Replace these values with your Firebase
-   project configuration.
-========================================= */
-
-const firebaseConfig = {
-
-  apiKey:
-    "PASTE_YOUR_FIREBASE_API_KEY",
-
-  authDomain:
-    "PASTE_YOUR_PROJECT.firebaseapp.com",
-
-  projectId:
-    "PASTE_YOUR_PROJECT_ID",
-
-  storageBucket:
-    "PASTE_YOUR_PROJECT.firebasestorage.app",
-
-  messagingSenderId:
-    "PASTE_YOUR_SENDER_ID",
-
-  appId:
-    "PASTE_YOUR_APP_ID"
-
-};
-
-
-/* =========================================
-   FIREBASE IMPORTS
-========================================= */
-
-import {
-  initializeApp
-} from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  serverTimestamp
-} from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-
-const app =
-  initializeApp(firebaseConfig);
-
-const db =
-  getFirestore(app);
-
-
-/* =========================================
-   DEFAULT PACKAGES
-========================================= */
-
-const fallbackPackages = [
+const DEFAULT_PACKAGES = [
 
   {
     name:"300 Coin",
     price:390,
-    badge:""
+    badge:"",
+    desc:"Standard 300 Coin"
   },
 
   {
     name:"50 Coin + Luis Suarez",
     price:150,
-    badge:"HOT"
+    badge:"HOT",
+    desc:"Special package"
   },
 
   {
     name:"100 Coin + Iker Casillas",
     price:370,
-    badge:"POPULAR"
+    badge:"POPULAR",
+    desc:"Special package"
   },
 
   {
     name:"130 Coin",
     price:190,
-    badge:""
+    badge:"",
+    desc:"Standard 130 Coin"
   },
 
   {
     name:"550 Coin",
     price:620,
-    badge:""
-  },
-
-  {
-    name:"1040 Coin",
-    price:1100,
-    badge:""
-  },
-
-  {
-    name:"2,130 Coin",
-    price:2090,
-    badge:""
-  },
-
-  {
-    name:"3250 Coin",
-    price:3070,
-    badge:""
-  },
-
-  {
-    name:"5700 Coin",
-    price:5100,
-    badge:""
-  },
-
-  {
-    name:"12800 Coin",
-    price:11300,
-    badge:""
+    badge:"",
+    desc:"Standard 550 Coin"
   },
 
   {
     name:"750 Coin",
     price:780,
-    badge:""
+    badge:"",
+    desc:"Standard 750 Coin"
+  },
+
+  {
+    name:"1040 Coin",
+    price:1100,
+    badge:"",
+    desc:"Standard 1040 Coin"
+  },
+
+  {
+    name:"2,130 Coin",
+    price:2090,
+    badge:"",
+    desc:"Standard 2,130 Coin"
+  },
+
+  {
+    name:"3250 Coin",
+    price:3070,
+    badge:"",
+    desc:"Standard 3250 Coin"
+  },
+
+  {
+    name:"5700 Coin",
+    price:5100,
+    badge:"",
+    desc:"Standard 5700 Coin"
+  },
+
+  {
+    name:"12800 Coin",
+    price:11300,
+    badge:"",
+    desc:"Standard 12800 Coin"
   },
 
   {
     name:"12800 + 5700 Coin Gift 130",
     price:16400,
-    badge:"SPECIAL"
+    badge:"GIFT",
+    desc:"Gift package"
   }
 
 ];
 
 
+const WHATSAPP =
+"8801749777140";
+
+
 let packages =
-  fallbackPackages;
+JSON.parse(
+localStorage.getItem("tk_packages")
+) || DEFAULT_PACKAGES;
 
 
-/* =========================================
-   LOAD PACKAGES
-========================================= */
+let orders =
+JSON.parse(
+localStorage.getItem("tk_orders")
+) || [];
 
-async function loadPackages(){
 
-  try{
+let settings =
+JSON.parse(
+localStorage.getItem("tk_settings")
+) || {
 
-    const snapshot =
-      await getDocs(
-        collection(db,"packages")
-      );
+  bkash:"01749777140",
 
-    if(!snapshot.empty){
+  wa:"8801749777140"
 
-      packages =
-        snapshot.docs
-        .map(doc => ({
-          id:doc.id,
-          ...doc.data()
-        }))
-        .filter(pkg =>
-          pkg.active !== false
-        )
-        .sort(
-          (a,b)=>
-            (a.sort || 0) -
-            (b.sort || 0)
-        );
+};
 
-    }
 
-  }catch(error){
+function saveAll(){
 
-    console.log(
-      "Using default packages:",
-      error
-    );
+  localStorage.setItem(
+    "tk_packages",
+    JSON.stringify(packages)
+  );
 
-  }
+  localStorage.setItem(
+    "tk_orders",
+    JSON.stringify(orders)
+  );
 
-  renderPackages();
+  localStorage.setItem(
+    "tk_settings",
+    JSON.stringify(settings)
+  );
+
+}
+
+
+function esc(text){
+
+  return String(text ?? "")
+  .replace(/[&<>"']/g,function(m){
+
+    return {
+
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+
+    }[m];
+
+  });
 
 }
 
 
 function renderPackages(){
 
-  const list =
-    document.getElementById(
-      "packageList"
-    );
+  const grid =
+  document.getElementById("packageGrid");
+
 
   const select =
-    document.getElementById(
-      "packageSelect"
-    );
-
-  list.innerHTML = "";
-  select.innerHTML =
-    `<option value="">Choose a package</option>`;
+  document.getElementById("package");
 
 
-  packages.forEach(
-    (pkg,index)=>{
+  grid.innerHTML =
+  packages.map(function(p,i){
 
-      const card =
-        document.createElement("div");
+    return `
 
-      card.className =
-        "card";
+      <div class="card">
 
-      card.innerHTML = `
+        <span
+          class="badge"
+          style="${p.badge ? "" : "display:none"}">
 
-        ${
-          pkg.badge
-          ?
-          `<div class="hot">
-            ${pkg.badge}
-          </div>`
-          :
-          ""
-        }
+          ${esc(p.badge)}
+
+        </span>
 
         <div class="coin">
-          🪙 ${pkg.name}
+
+          🪙 ${esc(p.name)}
+
+        </div>
+
+        <div class="desc">
+
+          ${esc(p.desc)}
+
         </div>
 
         <div class="price">
-          ৳${Number(pkg.price).toLocaleString()}
-          <small> BDT</small>
+
+          ৳ ${Number(p.price).toLocaleString()}
+
         </div>
 
         <button
-          onclick="selectPackage(${index})"
-        >
-          Buy Now
+          class="btn primary"
+          onclick="selectPackage(${i})">
+
+          Select
+
         </button>
+
+      </div>
+
+    `;
+
+  }).join("");
+
+
+  select.innerHTML =
+  `<option value="">
+    Choose a package
+  </option>` +
+
+  packages.map(function(p,i){
+
+    return `
+
+      <option value="${i}">
+
+        ${esc(p.name)}
+        — ৳${Number(p.price).toLocaleString()}
+
+      </option>
+
+    `;
+
+  }).join("");
+
+}
+
+
+function selectPackage(index){
+
+  document.getElementById(
+    "package"
+  ).value=index;
+
+  document.getElementById(
+    "order"
+  ).scrollIntoView({
+
+    behavior:"smooth"
+
+  });
+
+}
+
+
+function toggleMenu(){
+
+  const menu =
+  document.getElementById("menu");
+
+  menu.style.display =
+  menu.style.display==="block"
+  ? "none"
+  : "block";
+
+}
+
+
+function openAdminLogin(){
+
+  document.getElementById(
+    "menu"
+  ).style.display="none";
+
+  document.getElementById(
+    "adminLogin"
+  ).style.display="flex";
+
+}
+
+
+function closeModal(id){
+
+  document.getElementById(
+    id
+  ).style.display="none";
+
+}
+
+
+function loginAdmin(){
+
+  const password =
+  localStorage.getItem(
+    "tk_admin_pass"
+  ) || "adminhaha";
+
+
+  const entered =
+  document.getElementById(
+    "adminPass"
+  ).value;
+
+
+  if(entered===password){
+
+    closeModal("adminLogin");
+
+    document.getElementById(
+      "adminModal"
+    ).style.display="flex";
+
+    renderAdmin();
+
+    document.getElementById(
+      "adminPass"
+    ).value="";
+
+  }
+
+  else{
+
+    alert("Wrong admin password!");
+
+  }
+
+}
+
+
+function logoutAdmin(){
+
+  closeModal("adminModal");
+
+}
+
+
+function showTab(id){
+
+  document
+  .querySelectorAll(".adminpanel")
+  .forEach(function(panel){
+
+    panel.classList.remove("active");
+
+  });
+
+
+  document
+  .getElementById(id)
+  .classList.add("active");
+
+}
+
+
+function renderAdmin(){
+
+  const list =
+  document.getElementById(
+    "ordersList"
+  );
+
+
+  if(!orders.length){
+
+    list.innerHTML=
+    `<div class="row muted">
+      No orders yet.
+    </div>`;
+
+  }
+
+  else{
+
+    list.innerHTML =
+    orders
+    .slice()
+    .reverse()
+    .map(function(o,reverseIndex){
+
+      const index =
+      orders.length-1-reverseIndex;
+
+
+      return `
+
+      <div class="row">
+
+        <b>
+          Order #${esc(o.id)}
+        </b>
+
+        <br>
+
+        <small>
+          ${esc(o.time)}
+        </small>
+
+        <hr>
+
+        👤 <b>
+          ${esc(o.name)}
+        </b>
+
+        <br>
+
+        📱 ${esc(o.phone)}
+
+        <br>
+
+        🎮 KONAMI ID:
+        ${esc(o.konami)}
+
+        <br>
+
+        📧 ${esc(o.gmail)}
+
+        <br>
+
+        🪙 ${esc(o.package)}
+
+        — ৳${esc(o.price)}
+
+        <br>
+
+        💳 TrxID:
+        ${esc(o.trx)}
+
+        <br><br>
+
+
+        <select
+          onchange="updateStatus(${index},this.value)">
+
+          <option
+            ${o.status==="Pending"?"selected":""}>
+
+            Pending
+
+          </option>
+
+          <option
+            ${o.status==="Processing"?"selected":""}>
+
+            Processing
+
+          </option>
+
+          <option
+            ${o.status==="Completed"?"selected":""}>
+
+            Completed
+
+          </option>
+
+          <option
+            ${o.status==="Cancelled"?"selected":""}>
+
+            Cancelled
+
+          </option>
+
+        </select>
+
+
+        <button
+          class="btn danger"
+          style="padding:7px 10px;margin-left:7px"
+          onclick="deleteOrder(${index})">
+
+          Delete
+
+        </button>
+
+      </div>
 
       `;
 
-      list.appendChild(card);
+    }).join("");
+
+  }
 
 
-      const option =
-        document.createElement("option");
+  document.getElementById(
+    "adminPackages"
+  ).innerHTML =
 
-      option.value =
-        index;
+  packages.map(function(p,i){
 
-      option.textContent =
-        `${pkg.name} — ৳${Number(pkg.price).toLocaleString()}`;
+    return `
 
-      select.appendChild(option);
+      <div class="row">
 
-    }
+        <b>
+          ${esc(p.name)}
+        </b>
+
+        — ৳${Number(p.price).toLocaleString()}
+
+        ${p.badge
+          ? " • "+esc(p.badge)
+          : ""}
+
+        <br>
+
+        <small>
+          ${esc(p.desc)}
+        </small>
+
+        <br><br>
+
+        <button
+          class="btn danger"
+          style="padding:7px 10px"
+          onclick="deletePackage(${i})">
+
+          Delete
+
+        </button>
+
+      </div>
+
+    `;
+
+  }).join("");
+
+
+  document.getElementById(
+    "bkashSetting"
+  ).value=settings.bkash;
+
+
+  document.getElementById(
+    "waSetting"
+  ).value=settings.wa;
+
+}
+
+
+function updateStatus(index,status){
+
+  orders[index].status=status;
+
+  saveAll();
+
+  renderAdmin();
+
+}
+
+
+function deleteOrder(index){
+
+  if(confirm("Delete this order?")){
+
+    orders.splice(index,1);
+
+    saveAll();
+
+    renderAdmin();
+
+  }
+
+}
+
+
+function addPackage(){
+
+  const name =
+  document.getElementById(
+    "newName"
+  ).value.trim();
+
+
+  const price =
+  Number(
+    document.getElementById(
+      "newPrice"
+    ).value
+  );
+
+
+  const badge =
+  document.getElementById(
+    "newBadge"
+  ).value.trim();
+
+
+  const desc =
+  document.getElementById(
+    "newDesc"
+  ).value.trim();
+
+
+  if(!name || !price){
+
+    alert(
+      "Package name and price are required."
+    );
+
+    return;
+
+  }
+
+
+  packages.push({
+
+    name:name,
+
+    price:price,
+
+    badge:badge,
+
+    desc:desc
+
+  });
+
+
+  saveAll();
+
+  renderPackages();
+
+  renderAdmin();
+
+
+  document.getElementById(
+    "newName"
+  ).value="";
+
+
+  document.getElementById(
+    "newPrice"
+  ).value="";
+
+
+  document.getElementById(
+    "newBadge"
+  ).value="";
+
+
+  document.getElementById(
+    "newDesc"
+  ).value="";
+
+}
+
+
+function deletePackage(index){
+
+  if(confirm("Delete package?")){
+
+    packages.splice(index,1);
+
+    saveAll();
+
+    renderPackages();
+
+    renderAdmin();
+
+  }
+
+}
+
+
+function saveSettings(){
+
+  settings.bkash =
+  document.getElementById(
+    "bkashSetting"
+  ).value.trim()
+  || "01749777140";
+
+
+  settings.wa =
+  document.getElementById(
+    "waSetting"
+  ).value
+  .replace(/\D/g,"")
+  || WHATSAPP;
+
+
+  saveAll();
+
+  alert("Settings saved.");
+
+}
+
+
+function changePassword(){
+
+  const password =
+  document.getElementById(
+    "newPassword"
+  ).value;
+
+
+  if(password.length<6){
+
+    alert(
+      "Password must be at least 6 characters."
+    );
+
+    return;
+
+  }
+
+
+  localStorage.setItem(
+    "tk_admin_pass",
+    password
+  );
+
+
+  document.getElementById(
+    "newPassword"
+  ).value="";
+
+
+  alert(
+    "Admin password changed successfully!"
   );
 
 }
 
 
-window.selectPackage =
-function(index){
-
-  document.getElementById(
-    "packageSelect"
-  ).value = index;
-
-  document.getElementById(
-    "order"
-  ).scrollIntoView({
-    behavior:"smooth"
-  });
-
-};
+/* =========================
+   PLACE ORDER → WHATSAPP
+========================= */
 
 
-/* =========================================
-   ORDER SUBMISSION
-========================================= */
+document
+.getElementById("orderForm")
+.addEventListener(
+"submit",
+function(event){
 
-window.submitOrder =
-async function(){
+  event.preventDefault();
 
-  const phone =
-    document.getElementById(
-      "phone"
-    ).value.trim();
-
-  const gmail =
-    document.getElementById(
-      "gmail"
-    ).value.trim();
-
-  const userId =
-    document.getElementById(
-      "userId"
-    ).value.trim();
 
   const packageIndex =
-    document.getElementById(
-      "packageSelect"
-    ).value;
-
-  const trx =
-    document.getElementById(
-      "trx"
-    ).value.trim();
+  document.getElementById(
+    "package"
+  ).value;
 
 
-  if(
-    !phone ||
-    !gmail ||
-    !userId ||
-    packageIndex === "" ||
-    !trx
-  ){
+  if(packageIndex===""){
 
     alert(
-      "Please fill in all required fields."
+      "Please select a package."
     );
 
     return;
@@ -960,139 +1596,119 @@ async function(){
 
 
   const selectedPackage =
-    packages[
-      Number(packageIndex)
-    ];
+  packages[
+    Number(packageIndex)
+  ];
 
 
-  const orderId =
-    "TKB-" +
+  const order={
+
+    id:
+    "TK"+
     Date.now()
-      .toString(36)
-      .toUpperCase();
+    .toString()
+    .slice(-7),
 
+    time:
+    new Date()
+    .toLocaleString(),
 
-  const order = {
+    name:
+    document.getElementById(
+      "name"
+    ).value.trim(),
 
-    orderId,
+    phone:
+    document.getElementById(
+      "phone"
+    ).value.trim(),
 
-    phone,
+    konami:
+    document.getElementById(
+      "konami"
+    ).value.trim(),
 
-    gmail,
+    gmail:
+    document.getElementById(
+      "gmail"
+    ).value.trim(),
 
-    userId,
+    package:
+    selectedPackage.name,
 
-    packageName:
-      selectedPackage.name,
+    price:
+    selectedPackage.price,
 
-    amount:
-      Number(selectedPackage.price),
-
-    transactionId:
-      trx,
+    trx:
+    document.getElementById(
+      "trx"
+    ).value.trim(),
 
     status:
-      "pending",
-
-    createdAt:
-      serverTimestamp()
+    "Pending"
 
   };
 
 
-  try{
+  /* SAVE ORDER */
 
-    await addDoc(
-      collection(db,"orders"),
-      order
-    );
+  orders.push(order);
 
-  }catch(error){
-
-    console.error(error);
-
-    /*
-      If Firebase is not connected yet,
-      show the order confirmation locally.
-    */
-
-  }
+  saveAll();
 
 
-  document.getElementById(
-    "orderForm"
-  ).style.display =
-    "none";
-
-
-  document.getElementById(
-    "successBox"
-  ).style.display =
-    "block";
-
-
-  document.getElementById(
-    "successText"
-  ).innerHTML = `
-
-    <b>Order ID:</b> ${orderId}<br>
-
-    <b>Package:</b>
-    ${selectedPackage.name}<br>
-
-    <b>Amount:</b>
-    ৳${Number(selectedPackage.price).toLocaleString()}<br>
-
-    <b>eFootball ID:</b>
-    ${userId}<br>
-
-    <b>Phone:</b>
-    ${phone}<br>
-
-    <b>Gmail:</b>
-    ${gmail}<br>
-
-    <b>Transaction ID:</b>
-    ${trx}<br><br>
-
-    Please contact us on WhatsApp
-    with your Order ID.
-  `;
-
+  /* WHATSAPP MESSAGE */
 
   const message =
-    `Hello TopUpKoroBD%0A%0A` +
 
-    `Order ID: ${orderId}%0A` +
+`🛒 *NEW TOPUPKOROBD ORDER*
 
-    `Package: ${selectedPackage.name}%0A` +
+🆔 Order ID: ${order.id}
 
-    `Amount: ৳${selectedPackage.price}%0A` +
+👤 Name: ${order.name}
 
-    `eFootball ID: ${userId}%0A` +
+📱 Phone: ${order.phone}
 
-    `Phone: ${phone}%0A` +
+🎮 KONAMI ID: ${order.konami}
 
-    `Gmail: ${gmail}%0A` +
+📧 Gmail: ${order.gmail}
 
-    `Transaction ID: ${trx}`;
+🪙 Package: ${order.package}
 
+💰 Price: ৳${order.price}
 
-  document.getElementById(
-    "whatsappButton"
-  ).href =
-    `https://wa.me/8801749777140?text=${message}`;
+💳 bKash TrxID: ${order.trx}
 
-};
+⏳ Status: Pending`;
 
 
-/* =========================================
-   START
-========================================= */
+  const whatsappURL =
+  "https://wa.me/" +
+  (settings.wa || WHATSAPP) +
+  "?text=" +
+  encodeURIComponent(message);
 
-loadPackages();
+
+  /* OPEN WHATSAPP */
+
+  window.open(
+    whatsappURL,
+    "_blank"
+  );
+
+
+  /* RESET FORM */
+
+  this.reset();
+
+});
+
+
+/* INITIAL LOAD */
+
+renderPackages();
 
 </script>
 
 </body>
-</html>
+          </html>
